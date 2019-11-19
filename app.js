@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const keys = require('./config/keys');
+const passportSetup = require('./config/passport-setup');
+const passport = require('passport')
 const cors = require('cors');
 const cookieSession = require('cookie-session');
 const app = express();
@@ -22,8 +24,8 @@ app.use(cookieSession({
 }));
 
 // initialize passport
-// app.use(passport.initialize());
-// app.use(passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
 
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
@@ -33,7 +35,7 @@ mongoose.Promise = global.Promise
 
 //connect to mongodb
 mongoose.connect('mongodb://' + DATABASE_HOST_NAME + '/' + DATABASE_NAME, () => {
-    console.log('Connected to Database');
+    console.log('Connected to mongodb');
 });
 
 // set up routes
@@ -48,5 +50,5 @@ app.get('/', (req, res) => {
 
 // start server
 app.listen(3000, () => {
-    console.log('app now listening or requests on port 3000');
+    console.log('App now listening or requests on port 3000');
 });
