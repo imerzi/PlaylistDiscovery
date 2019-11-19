@@ -1,0 +1,118 @@
+/* home page css */
+
+/* all home page */
+.home_page {
+  background: #614385;
+  background: -webkit-linear-gradient(to right, #516395, #614385);
+  background: linear-gradient(to right, #516395, #614385);
+  width: 100%;
+  height: 100%;
+}
+
+h1 {
+  text-shadow: 0 3px 0px rgba(0, 0, 0, 0.2);
+}
+
+h3 {
+  text-shadow: 0 3px 0px rgba(0, 0, 0, 0.2);
+}
+
+h5 {
+  text-shadow: 0 3px 0px rgba(0, 0, 0, 0.2);
+}
+
+p {
+  font-size: 18px;
+  text-shadow: 0 2px 1px rgba(0, 0, 0, 0.5);
+}
+
+/* first container */
+.section_intro {
+  padding-top: 50px;
+}
+
+/* home logo */
+.logo {
+  max-width: 200px;
+  border-radius: 20px;
+  margin: auto;
+  margin-bottom: 40px;
+}
+
+.title-h1 {
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+.img_spotify {
+  max-width: 27px;
+  margin-left: 8px;
+}
+
+.title-h3 {
+  margin: auto;
+  margin-bottom: 40px;
+}
+
+.section_button_login {
+  margin: auto;
+}
+
+.row_login {
+  margin-bottom: 80px;
+}
+
+.btn-login {
+  box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.5);
+  color: #234957 !important;
+  letter-spacing: 1px;
+}
+
+.img_1 {
+  width: 100%;
+}
+
+.first_row {
+  padding-bottom: 100px;
+}
+
+.second_row {
+  padding-bottom: 100px;
+}
+
+.third_row {
+  padding-bottom: 100px;
+}
+
+.fourth_row {
+  padding-bottom: 100px;
+}
+
+.fifth_row {
+  padding-bottom: 100px;
+}
+
+.sixth_row {
+  padding-bottom: 50px;
+}
+
+.start_now {
+  margin-bottom: 50px;
+}
+
+.logo_thumbs {
+  margin-left: 8px;
+  color: #96b8d7;
+}
+
+.col-text {
+  margin: auto;
+}
+
+.trending {
+  width: 100%;
+}
+
+.made {
+  font-size: 10px;
+}
