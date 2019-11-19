@@ -37,6 +37,7 @@ p {
   border-radius: 20px;
   margin: auto;
   margin-bottom: 40px;
+  box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.5);
 }
 
 .title-h1 {
@@ -111,6 +112,10 @@ p {
 
 .trending {
   width: 100%;
+}
+
+.chat {
+  width: 85%;
 }
 
 .made {
