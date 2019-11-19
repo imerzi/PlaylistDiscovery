@@ -1,5 +1,5 @@
 # PlaylistDiscovery
-Web application de partage et découverte en matière de tendance musical
+Web application share and discover new music
 
 # Install dependency
 ```
