@@ -1,5 +1,6 @@
 # PlaylistDiscovery
-Web application share and discover new music
+Web application build with Express and EJS powered by Spotify API.
+Share and discover new music.
 
 # Install dependency
 ```
