@@ -7,8 +7,11 @@ const cors = require('cors');
 const cookieSession = require('cookie-session');
 const app = express();
 
-const DATABASE_HOST_NAME = 'localhost'
-const DATABASE_NAME = 'playlistDiscovery'
+const profileRoutes = require('./routes/profile-routes');
+const authRoutes = require('./routes/auth-routes');
+
+const DATABASE_HOST_NAME = 'localhost';
+const DATABASE_NAME = 'playlistDiscovery';
 
 app.use(cors());
 
@@ -39,13 +42,17 @@ mongoose.connect('mongodb://' + DATABASE_HOST_NAME + '/' + DATABASE_NAME, () => 
 });
 
 // set up routes
-// app.use('/auth', authRoutes);
-// app.use('/profile', profileRoutes);
+app.use('/auth', authRoutes);
+app.use('/profile', profileRoutes);
 // app.use('/spotify', spotifyRoutes);
 
 //create home route
 app.get('/', (req, res) => {
-  res.render('home');
+    if (!req.user) {
+        res.render('home');
+    } else {
+        res.render('profile', {page_name: 'profile', user: req.user});
+    }
 });
 
 // start server

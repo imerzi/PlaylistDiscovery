@@ -1,0 +1,52 @@
+<nav id="nav" class="navbar sticky-top navbar-expand-lg navbar-dark nav-transparent">
+        <a class="navbar-brand" href="/">
+            <img src="profile.png" height="50" height="50"></img>
+          </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+          aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <ul class="navbar-nav mr-auto nav-fill w-100">
+                <% if (page_name == 'playlist' ) { %>
+                    <li class="nav-item">
+                        <a class="nav-link active">playlist</a>
+                    </li>
+                    <% } else { %>
+                        <li class="nav-item">
+                                <a class="nav-link">playlist</a>
+                            </li>
+                            <% } %>
+                    <% if (page_name == 'leaderboard' ) { %>
+                    <li class="nav-item">
+                        <a class="nav-link active">leaderboard</a>
+                    </li>
+                    <% } else { %>
+                        <li class="nav-item">
+                                <a class="nav-link">leaderboard</a>
+                            </li>
+                            <% } %>
+                    <% if (page_name == 'chat' ) { %>
+                    <li class="nav-item">
+                        <a class="nav-link active">chat</a>
+                    </li>
+                    <% } else {%>
+                    <li class="nav-item">
+                        <a class="nav-link">chat</a>
+                    </li>
+                    <% } %>
+                    <% if (page_name == 'profile' ) { %>
+                        <li class="nav-item">
+                            <a href="/profile" class="nav-link active">profile</a>
+                        </li>
+                        <% } else {%>
+                        <li class="nav-item">
+                            <a href="/profile" class="nav-link">profile</a>
+                        </li>
+                        <% } %>
+                        <li class="nav-item">
+                            <a href="/auth/logout" class="nav-link">logout</a>
+                        </li>
+                  </ul>
+        </div>
+      </nav>
