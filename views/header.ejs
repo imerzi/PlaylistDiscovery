@@ -1,6 +1,6 @@
 <nav id="nav" class="navbar sticky-top navbar-expand-lg navbar-dark nav-transparent">
         <a class="navbar-brand" href="/">
-            <img src="profile.png" height="50" height="50"></img>
+            <img src="/profile.png" height="50" height="50"></img>
           </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
           aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -9,12 +9,24 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
             <ul class="navbar-nav mr-auto nav-fill w-100">
                 <% if (page_name == 'playlist' ) { %>
-                    <li class="nav-item">
-                        <a class="nav-link active">playlist</a>
-                    </li>
+                    <li class="nav-item dropdown">
+                            <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              playlist
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="/playlist">Discover</a>
+                              <a class="dropdown-item" href="/playlist/create">Create</a>
+                            </div>
+                        </li>
                     <% } else { %>
-                        <li class="nav-item">
-                                <a class="nav-link">playlist</a>
+                        <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  playlist
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                  <a class="dropdown-item" href="/playlist">Discover</a>
+                                  <a class="dropdown-item" href="/playlist/create"">Create</a>
+                                </div>
                             </li>
                             <% } %>
                     <% if (page_name == 'leaderboard' ) { %>
@@ -45,7 +57,7 @@
                         </li>
                         <% } %>
                         <li class="nav-item">
-                            <a href="/auth/logout" class="nav-link">logout</a>
+                            <a href="/auth/logout"type="button" class="btn btn-primary nav-link btn-logout">logout</a>
                         </li>
                   </ul>
         </div>

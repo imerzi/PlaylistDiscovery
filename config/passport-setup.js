@@ -36,7 +36,8 @@ passport.use(
                     thumbnail: profile._json.images[0].url,
                     userAccessToken: accessToken,
                     userRefreshToken: refreshToken,
-                    userExpiresIn: expires_in
+                    userExpiresIn: expires_in,
+                    reputation: 0
                 }).save().then((newUser) => {
                     console.log('New user created: ' + newUser);
                     done(null, newUser);

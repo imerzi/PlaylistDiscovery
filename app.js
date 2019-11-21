@@ -9,6 +9,7 @@ const app = express();
 
 const profileRoutes = require('./routes/profile-routes');
 const authRoutes = require('./routes/auth-routes');
+const playlistRoutes = require('./routes/playlist-route');
 
 const DATABASE_HOST_NAME = 'localhost';
 const DATABASE_NAME = 'playlistDiscovery';
@@ -44,7 +45,7 @@ mongoose.connect('mongodb://' + DATABASE_HOST_NAME + '/' + DATABASE_NAME, () => 
 // set up routes
 app.use('/auth', authRoutes);
 app.use('/profile', profileRoutes);
-// app.use('/spotify', spotifyRoutes);
+app.use('/playlist', playlistRoutes);
 
 //create home route
 app.get('/', (req, res) => {
