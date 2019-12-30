@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/imerzi/PlaylistDiscovery#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "cookie-session": "^1.3.3",
     "cors": "^2.8.5",
     "ejs": "^2.7.3",

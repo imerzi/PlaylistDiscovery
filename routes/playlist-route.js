@@ -2,6 +2,13 @@ const router = require('express').Router();
 const SpotifyWebApi = require('spotify-web-api-node');
 const keys = require('../config/keys');
 const Playlist = require('../models/user-playlist');
+var bodyParser = require('body-parser')
+
+// create application/json parser
+var jsonParser = bodyParser.json()
+
+// create application/x-www-form-urlencoded parser
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 var spotifyApi = new SpotifyWebApi({
   clientId: keys.spotify.clientID,
@@ -59,13 +66,51 @@ router.get('/create', (req, res) => {
           })
           playlistUrl.push('https://open.spotify.com/embed/playlist/' + item.id);
       });
-
-        res.render('playlist_create', {page_name: 'playlist', user: req.user, playlist: playlistUrl});
+        res.render('playlist_create', {page_name: 'playlist', user: req.user, playlist: playlistUrl, song: ''});
     },
     function(err) {
       console.log('Something went wrong!', err);
       res.render('spotify', {data: err, user: req.user});
   });
+});
+
+router.post('/searchSong', async function(req, res) {
+  spotifyApi.searchTracks(req.body.songs, {limit: 50, offset: 1}).then(
+    function(data) {
+      let song = [];
+      data.body.tracks.items.forEach(function (item) {
+        let track = item.uri.split(':');
+        let elem = {
+          image: item.album.images[0].url,
+          artist: item.artists[0].name,
+          name: item.name,
+          url: track[2]
+        }
+        song.push(elem);
+      });
+      res.render('playlist_create', {page_name: 'playlist', song: song});
+    },
+    function(err) {
+      console.log('Something went wrong!', err);
+    }
+  );
+});
+
+router.post('/addPlaylist', async function(req, res) {
+  console.log(req.body);
+
+  for (let elem in req.body) {
+    console.log(elem);
+  }
+
+  spotifyApi.createPlaylist(req.user.spotifyId, req.body.playlistName, { 'public' : false })
+  .then(function(data) {
+    console.log('Created playlist!');
+    console.log(data);
+  }, function(err) {
+    console.log('Something went wrong!', err);
+  });
+
 });
 
 module.exports = router;

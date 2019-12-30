@@ -1,47 +1,105 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>playlistDiscovery</title>
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/2356323c8f.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="/playlist_create.css"></link>
-  <link rel="stylesheet" href="/theme.css"></link>
+  <link rel="stylesheet" href="/playlist_create.css">
+  </link>
+  <link rel="stylesheet" href="/theme.css">
+  </link>
 </head>
 
 <body>
 
-    <div class="page">
-        <%- include('header'); -%>
-        <div class="container">
+  <div class="page">
+    <%- include('header'); -%>
+    <div class="container">
 
-            <div class="row">
-                <p>create</p>
+      <div class="row">
+
+        <div class="col-md-8">
+          <form class="form-inline" method="POST" action="searchSong">
+            <div class="form-group">
+              <input name="songs" id="songs" type="text" class="form-control" placeholder="Search for tracks">
             </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+          </form>
+
+          <div class="row">
+            <% if (song) { %>
+            <% song.forEach(function(item){ %>
+            <div class="col-md-12 song">
+              <img height="50" width="50" src="<%= item.image %>">
+              <div><%= item.artist %></div>
+              <div id="<%= item.url %>" name="<%= item.url %>"><%= item.name %></div>
+              <button type="button" onclick='addToPlaylist("<%= item.url %>")' class="btn btn-primary">Add to
+                playlist</button>
+            </div>
+            <% }) %>
+            <% } %>
+          </div>
 
         </div>
-    </div>
 
-  <!-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  <!-- <script>
-    AOS.init();
-  </script> -->
+        <div class="col-md-4">
+          <form method="POST" action="addPlaylist">
+            <div class="form-group">
+              <input name="playlistName" id="playlistName" type="text" class="form-control" placeholder="Playlist name">
+              <ol id="list"></ol>
+              <button type="submit" class="btn btn-primary">Create playlist</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
   <script>
-  window.addEventListener('scroll', function (e) {
+    window.addEventListener('scroll', function (e) {
       var nav = document.getElementById('nav');
       if (document.documentElement.scrollTop || document.body.scrollTop > window.innerHeight) {
-          nav.classList.remove('nav-transparent');
-          nav.classList.add('nav-colored');
-        } else {
-            nav.classList.remove('nav-colored');
-            nav.classList.add('nav-transparent');
-          }
-  });
-</script>
+        nav.classList.remove('nav-transparent');
+        nav.classList.add('nav-colored');
+      } else {
+        nav.classList.remove('nav-colored');
+        nav.classList.add('nav-transparent');
+      }
+    });
+  </script>
+  <script>
+    var list = document.getElementById('list');
+
+    function addToPlaylist(elem) {
+      var songName = document.getElementById(elem).innerHTML;
+      var artistName = document.getElementById(elem).previousElementSibling;
+
+      var entry = document.createElement('li');
+      var hiddenInput = document.createElement('input');
+      hiddenInput.setAttribute("type", "hidden");  
+      hiddenInput.setAttribute("name", elem);
+      hiddenInput.setAttribute("value", elem);
+      entry.appendChild(document.createTextNode(songName + " " + artistName.innerHTML));
+      entry.setAttribute("id", elem);
+      list.appendChild(entry)
+      list.append(hiddenInput)
+    }
+  </script>
 </body>
+
 </html>

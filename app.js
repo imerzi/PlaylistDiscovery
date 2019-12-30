@@ -6,6 +6,7 @@ const passport = require('passport')
 const cors = require('cors');
 const cookieSession = require('cookie-session');
 const app = express();
+const bodyParser = require('body-parser')
 
 const profileRoutes = require('./routes/profile-routes');
 const authRoutes = require('./routes/auth-routes');
@@ -20,6 +21,11 @@ app.use(cors());
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/css'));
 app.use(express.static(__dirname + '/images'));
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+// parse application/json
+app.use(bodyParser.json())
 
 // set session cookie to 24 hours and encrypt cookie
 app.use(cookieSession({

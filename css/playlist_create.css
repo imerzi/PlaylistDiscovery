@@ -70,3 +70,7 @@ p {
     background-color:#7aa5cc !important;
     border-color:#719fc9 !important;
 }
+
+.song {
+    display: inherit;
+}

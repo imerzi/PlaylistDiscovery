@@ -1,11 +1,6 @@
 const router = require('express').Router();
 const passport = require('passport');
 
-// auth login
-// router.get('/login', (req, res) => {
-//     res.render('login', {user: req.user});
-// });
-
 // auth logout
 router.get('/logout', (req, res) => {
     // logout handle with passport
@@ -18,6 +13,9 @@ router.get('/spotify', passport.authenticate('spotify', {
     scope: [
         'user-read-email',
         'user-read-private',
+        'playlist-read-collaborative',
+        'playlist-modify-public',
+        'playlist-modify-private',
         'playlist-read-private',
         'playlist-modify-public'],
     showDialog: true
