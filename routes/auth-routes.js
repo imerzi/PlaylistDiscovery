@@ -16,14 +16,13 @@ router.get('/spotify', passport.authenticate('spotify', {
         'playlist-read-collaborative',
         'playlist-modify-public',
         'playlist-modify-private',
-        'playlist-read-private',
-        'playlist-modify-public'],
+        'playlist-read-private'],
     showDialog: true
 }));
 
 // callback route for spotify to redirect
 router.get('/spotify/redirect', passport.authenticate('spotify'), (req, res) => {
-    // res.send(req.user);
+    res.cookie('code', req.query.code)
     res.redirect('/profile');
 });
 

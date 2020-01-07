@@ -25,8 +25,16 @@ passport.use(
         // check if user already exists in our db
         User.findOne({spotifyId: profile.id}).then((currentUser) => {
             if (currentUser) {
+                // update user token if already exists in db
+                currentUser.userAccessToken = accessToken;
+                currentUser.userRefreshToken = refreshToken;
+                currentUser.save(function(err) {
+                  if (err)
+                    console.log('error update user')
+                  else
+                    console.log('success update user')
+                });
                 // already have a user
-                console.log('Current user is: ' + currentUser);
                 done(null, currentUser);
             } else {
                 // if not create user in our db
@@ -34,12 +42,12 @@ passport.use(
                     username: profile.displayName,
                     spotifyId: profile.id,
                     thumbnail: profile._json.images[0].url,
+                    thumbnail: '',
                     userAccessToken: accessToken,
                     userRefreshToken: refreshToken,
                     userExpiresIn: expires_in,
                     reputation: 0
                 }).save().then((newUser) => {
-                    console.log('New user created: ' + newUser);
                     done(null, newUser);
                 });
             }

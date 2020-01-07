@@ -3,23 +3,20 @@ const SpotifyWebApi = require('spotify-web-api-node');
 const keys = require('../config/keys');
 const Playlist = require('../models/user-playlist');
 var bodyParser = require('body-parser')
+const request = require('request');
+const User = require('../models/user-model');
 
-// create application/json parser
-var jsonParser = bodyParser.json()
-
-// create application/x-www-form-urlencoded parser
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
+var redirect_uri = keys.spotify.redirectUri;
 
 var spotifyApi = new SpotifyWebApi({
   clientId: keys.spotify.clientID,
   clientSecret: keys.spotify.clientSecret,
-  redirectUri: keys.redirectUri
+  redirectUri: keys.spotify.redirectUri
 });
 
 function newToken(){
   spotifyApi.clientCredentialsGrant().then(
       function(data) {
-
           // Save the access token so that it's used in future calls
           spotifyApi.setAccessToken(data.body['access_token']);
       },
@@ -37,13 +34,11 @@ tokenRefreshInterval = setInterval(newToken, 1000 * 60 * 60);
 
 router.get('/', (req, res) => {
     Playlist.find({}, function(err, playlists) {
-        console.log(playlists);
         res.render('playlist_discover', {page_name: 'playlist', user: req.user, lists: playlists});
     });
 });
 
 router.get('/create', (req, res) => {
-
     spotifyApi.getUserPlaylists(req.user.spotifyId).then(
       function(data) {
         let playlistUrl = [];
@@ -52,7 +47,6 @@ router.get('/create', (req, res) => {
           Playlist.findOne({playlistId: item.id}).then((currentPlaylist) => {
             if (currentPlaylist) {
               // already have this playlist
-              console.log('playlist is: ' + currentPlaylist);
             } else {
               // create new playlist
               new Playlist({
@@ -60,7 +54,6 @@ router.get('/create', (req, res) => {
                 playlistId: item.id,
                 likes: 0
               }).save().then((newPlaylist) => {
-                console.log('playlist created: ' + newPlaylist);
               });
             }
           })
@@ -70,7 +63,7 @@ router.get('/create', (req, res) => {
     },
     function(err) {
       console.log('Something went wrong!', err);
-      res.render('spotify', {data: err, user: req.user});
+      res.render('playlist_create', {page_name: 'playlist', user: req.user, song: ''});
   });
 });
 
@@ -97,20 +90,47 @@ router.post('/searchSong', async function(req, res) {
 });
 
 router.post('/addPlaylist', async function(req, res) {
-  console.log(req.body);
 
-  for (let elem in req.body) {
-    console.log(elem);
-  }
 
-  spotifyApi.createPlaylist(req.user.spotifyId, req.body.playlistName, { 'public' : false })
-  .then(function(data) {
-    console.log('Created playlist!');
-    console.log(data);
-  }, function(err) {
-    console.log('Something went wrong!', err);
-  });
+  // for (let elem in req.body) {
+  //   console.log(elem);
+  // }
 
+  // let authOptions = {
+  //   url: 'https://accounts.spotify.com/api/token',
+  //   form: {
+  //     code: req.cookies.code,
+  //     redirect_uri,
+  //     grant_type: 'authorization_code'
+  //   },
+  //   headers: {
+  //     'Authorization': 'Basic ' + (new Buffer(
+  //       keys.spotify.clientID + ':' + keys.spotify.clientSecret
+  //     ).toString('base64'))
+  //   },
+  //   json: true
+  // }
+  // request.post(authOptions, function(error, response, body) {
+  //   console.log(response);
+  //   res.cookie('access_token', body.access_token)
+  // })
+
+    var createPlaylist = {
+        url: `https://api.spotify.com/v1/users/${req.user.spotifyId}/playlists`,
+        body: JSON.stringify({
+            'name': req.body.playlistName,
+            'public': false
+        }),
+        dataType:'json',
+        headers: {
+            'Authorization': 'Bearer ' + req.user.userAccessToken,
+            'Content-Type': 'application/json',
+        }
+    };
+
+    request.post(createPlaylist, function(err, res, body) {
+        console.log(body);
+    });
 });
 
 module.exports = router;

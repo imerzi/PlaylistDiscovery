@@ -7,7 +7,7 @@ const cors = require('cors');
 const cookieSession = require('cookie-session');
 const app = express();
 const bodyParser = require('body-parser')
-
+const cookieParser = require('cookie-parser');
 const profileRoutes = require('./routes/profile-routes');
 const authRoutes = require('./routes/auth-routes');
 const playlistRoutes = require('./routes/playlist-route');
@@ -16,6 +16,7 @@ const DATABASE_HOST_NAME = 'localhost';
 const DATABASE_NAME = 'playlistDiscovery';
 
 app.use(cors());
+app.use(cookieParser());
 
 //set up view engine
 app.set('view engine', 'ejs');
