@@ -17,13 +17,19 @@
 
 <body>
 
-  <div class="page">
+  <div id="page" class="page">
     <%- include('header'); -%>
     <div class="container">
 
+      <% if (alert == 'true') { %>
+      <div class="alert alert-success" role="alert">
+        Playlist create with success !
+      </div>
+      <% } %>
+
       <div class="row">
 
-        <div class="col-md-8">
+        <div class="col-md-7">
           <form class="form-inline" method="POST" action="searchSong">
             <div class="form-group">
               <input name="songs" id="songs" type="text" class="form-control" placeholder="Search for tracks">
@@ -31,29 +37,48 @@
             <button type="submit" class="btn btn-primary">Search</button>
           </form>
 
-          <div class="row">
+          <div class="row songTable">
+
             <% if (song) { %>
-            <% song.forEach(function(item){ %>
-            <div class="col-md-12 song">
-              <img height="50" width="50" src="<%= item.image %>">
-              <div><%= item.artist %></div>
-              <div id="<%= item.url %>" name="<%= item.url %>"><%= item.name %></div>
-              <button type="button" onclick='addToPlaylist("<%= item.url %>")' class="btn btn-primary">Add to
-                playlist</button>
-            </div>
-            <% }) %>
+            <table class="table table-dark table-hover table-responsive">
+              <!-- <table class="table table-borderless table-dark"> -->
+              <thead>
+                <tr>
+                  <th scope="col">Cover</th>
+                  <th scope="col">Artist</th>
+                  <th scope="col">Song</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                <% song.forEach(function(item){ %>
+                  <tr>
+                    <th>
+                      <img id="img" height="50" width="50" src="<%= item.image %>">
+                    </th>
+                    <th><%= item.artist %></th>
+                    <th id="<%= item.url %>" name="<%= item.url %>"><%= item.name %></th>
+                    <th>
+                      <button type="button" onclick='addToPlaylist("<%= item.url %>")' class="btn btn-primary add">Add</button>
+                    </th>
+                  </tr>
+                <% }) %>
+              </tbody>
+            </table>
             <% } %>
           </div>
 
         </div>
 
-        <div class="col-md-4">
-          <form method="POST" action="addPlaylist">
+        <div class="col-md-4 right">
+          <form class="form-inline" method="POST" action="addPlaylist">
             <div class="form-group">
               <input name="playlistName" id="playlistName" type="text" class="form-control" placeholder="Playlist name">
-              <ol id="list"></ol>
-              <button type="submit" class="btn btn-primary">Create playlist</button>
             </div>
+            <button type="submit" class="btn btn-primary">Create playlist</button>
+            <ul id="list" class="list-group">
+            </ul>
           </form>
         </div>
 
@@ -90,14 +115,23 @@
       var artistName = document.getElementById(elem).previousElementSibling;
 
       var entry = document.createElement('li');
+      entry.style.backgroundColor = "#2E2C47"
+      entry.style.color = "white";
+      entry.setAttribute("class", "list-group-item");
       var hiddenInput = document.createElement('input');
-      hiddenInput.setAttribute("type", "hidden");  
+      hiddenInput.setAttribute("type", "hidden");
       hiddenInput.setAttribute("name", elem);
       hiddenInput.setAttribute("value", elem);
-      entry.appendChild(document.createTextNode(songName + " " + artistName.innerHTML));
+      entry.appendChild(document.createTextNode( artistName.innerHTML + " " + songName));
       entry.setAttribute("id", elem);
       list.appendChild(entry)
       list.append(hiddenInput)
+    }
+  </script>
+  <script>
+    if (document.getElementById("img")) {
+      var page = document.getElementById("page");
+      page.style.height = "100%";
     }
   </script>
 </body>

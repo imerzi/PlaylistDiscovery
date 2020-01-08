@@ -5,8 +5,7 @@ const Playlist = require('../models/user-playlist');
 var bodyParser = require('body-parser')
 const request = require('request');
 const User = require('../models/user-model');
-
-var redirect_uri = keys.spotify.redirectUri;
+const axios = require('axios');
 
 var spotifyApi = new SpotifyWebApi({
   clientId: keys.spotify.clientID,
@@ -59,11 +58,11 @@ router.get('/create', (req, res) => {
           })
           playlistUrl.push('https://open.spotify.com/embed/playlist/' + item.id);
       });
-        res.render('playlist_create', {page_name: 'playlist', user: req.user, playlist: playlistUrl, song: ''});
+        res.render('playlist_create', {page_name: 'playlist', user: req.user, playlist: playlistUrl, song: '', alert: 'false'});
     },
     function(err) {
       console.log('Something went wrong!', err);
-      res.render('playlist_create', {page_name: 'playlist', user: req.user, song: ''});
+      res.render('playlist_create', {page_name: 'playlist', user: req.user, song: '', alert: 'false'});
   });
 });
 
@@ -81,7 +80,7 @@ router.post('/searchSong', async function(req, res) {
         }
         song.push(elem);
       });
-      res.render('playlist_create', {page_name: 'playlist', song: song});
+      res.render('playlist_create', {page_name: 'playlist', song: song, alert:'false'});
     },
     function(err) {
       console.log('Something went wrong!', err);
@@ -91,46 +90,50 @@ router.post('/searchSong', async function(req, res) {
 
 router.post('/addPlaylist', async function(req, res) {
 
+  var trackURIs = []
+  for (let elem in req.body) {
+    if (elem != "playlistName") {
+      trackURIs.push("spotify:track:" + elem);
+    }
+  }
 
-  // for (let elem in req.body) {
-  //   console.log(elem);
-  // }
-
-  // let authOptions = {
-  //   url: 'https://accounts.spotify.com/api/token',
-  //   form: {
-  //     code: req.cookies.code,
-  //     redirect_uri,
-  //     grant_type: 'authorization_code'
-  //   },
-  //   headers: {
-  //     'Authorization': 'Basic ' + (new Buffer(
-  //       keys.spotify.clientID + ':' + keys.spotify.clientSecret
-  //     ).toString('base64'))
-  //   },
-  //   json: true
-  // }
-  // request.post(authOptions, function(error, response, body) {
-  //   console.log(response);
-  //   res.cookie('access_token', body.access_token)
-  // })
-
-    var createPlaylist = {
-        url: `https://api.spotify.com/v1/users/${req.user.spotifyId}/playlists`,
-        body: JSON.stringify({
-            'name': req.body.playlistName,
-            'public': false
-        }),
-        dataType:'json',
-        headers: {
-            'Authorization': 'Bearer ' + req.user.userAccessToken,
-            'Content-Type': 'application/json',
-        }
-    };
-
-    request.post(createPlaylist, function(err, res, body) {
-        console.log(body);
-    });
+    await makePlaylist(req.user.spotifyId, req.body.playlistName, req.user.userAccessToken).then(function(result) {
+      playlistId = result.data.id
+      console.log(playlistId)
+    })
+  
+    await addToPlaylist(req.user.spotifyId, playlistId, trackURIs, req.user.userAccessToken).then(function(result) {
+      console.log(result);
+      res.render('playlist_create', {page_name: 'playlist', user: req.user, song: '', alert:'true'});
+    })
 });
+
+async function makePlaylist(userId, playlistName, access_token) {
+  return await axios({
+      url: `https://api.spotify.com/v1/users/${userId}/playlists`,
+      method: 'post',
+      headers: {
+        'Authorization': 'Bearer ' + access_token,
+        'Content-Type': 'application/json'
+      },
+      data: {
+        'name': playlistName
+      }
+  });
+}
+
+async function addToPlaylist(userId, playlistId, trackURIs, access_token) {
+  return await axios({
+      url: `https://api.spotify.com/v1/users/${userId}/playlists/${playlistId}/tracks`,
+      method: 'post',
+      headers: {
+        'Authorization': 'Bearer ' + access_token,
+        'Content-Type': 'application/json'
+      },
+      data: {
+        uris: trackURIs
+      }
+  });
+}
 
 module.exports = router;

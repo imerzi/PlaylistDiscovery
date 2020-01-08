@@ -74,3 +74,23 @@ p {
 .song {
     display: inherit;
 }
+
+.add {
+    width: 130px;
+}
+
+.right {
+    margin-left: 5vh;
+}
+
+.songTable {
+    margin-top: 5vh;
+}
+
+.table-dark {
+    background-color: #2E2C47!important;
+}
+
+.list-group {
+    margin-top: 5vh;
+}
