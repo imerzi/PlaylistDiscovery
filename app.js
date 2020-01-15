@@ -11,6 +11,7 @@ const cookieParser = require('cookie-parser');
 const profileRoutes = require('./routes/profile-routes');
 const authRoutes = require('./routes/auth-routes');
 const playlistRoutes = require('./routes/playlist-route');
+const leaderboardRoutes = require('./routes/leaderboard-routes');
 
 const DATABASE_HOST_NAME = 'localhost';
 const DATABASE_NAME = 'playlistDiscovery';
@@ -53,6 +54,7 @@ mongoose.connect('mongodb://' + DATABASE_HOST_NAME + '/' + DATABASE_NAME, () => 
 app.use('/auth', authRoutes);
 app.use('/profile', profileRoutes);
 app.use('/playlist', playlistRoutes);
+app.use('/leaderboard', leaderboardRoutes);
 
 //create home route
 app.get('/', (req, res) => {

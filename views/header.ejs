@@ -30,13 +30,25 @@
                             </li>
                             <% } %>
                     <% if (page_name == 'leaderboard' ) { %>
-                    <li class="nav-item">
-                        <a class="nav-link active">leaderboard</a>
-                    </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        leaderboard
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/leaderboard/user">User</a>
+                        <a class="dropdown-item" href="/leaderboard/playlist"">Playlist</a>
+                      </div>
+                  </li>
                     <% } else { %>
-                        <li class="nav-item">
-                                <a class="nav-link">leaderboard</a>
-                            </li>
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          leaderboard
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="/leaderboard/user">User</a>
+                          <a class="dropdown-item" href="/leaderboard/playlist"">Playlist</a>
+                        </div>
+                    </li>
                             <% } %>
                     <% if (page_name == 'chat' ) { %>
                     <li class="nav-item">

@@ -67,7 +67,7 @@ router.get('/create', (req, res) => {
 });
 
 router.post('/searchSong', async function(req, res) {
-  spotifyApi.searchTracks(req.body.songs, {limit: 50, offset: 1}).then(
+  spotifyApi.searchTracks(req.body.songs, {limit: 20, offset: 1}).then(
     function(data) {
       let song = [];
       data.body.tracks.items.forEach(function (item) {
@@ -99,13 +99,19 @@ router.post('/addPlaylist', async function(req, res) {
 
     await makePlaylist(req.user.spotifyId, req.body.playlistName, req.user.userAccessToken).then(function(result) {
       playlistId = result.data.id
-      console.log(playlistId)
     })
   
     await addToPlaylist(req.user.spotifyId, playlistId, trackURIs, req.user.userAccessToken).then(function(result) {
-      console.log(result);
       res.render('playlist_create', {page_name: 'playlist', user: req.user, song: '', alert:'true'});
     })
+
+    User.findOneAndUpdate({ spotifyId: req.user.spotifyId }, { $inc: { reputation: 5 } }, {new: true },function(err, response) {
+      if (err) {
+        console.log('error update user')
+      } else {
+      console.log('success update user')
+    }
+  })
 });
 
 async function makePlaylist(userId, playlistName, access_token) {
