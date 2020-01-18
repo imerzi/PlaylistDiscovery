@@ -8,10 +8,15 @@ const cookieSession = require('cookie-session');
 const app = express();
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser');
+
 const profileRoutes = require('./routes/profile-routes');
 const authRoutes = require('./routes/auth-routes');
 const playlistRoutes = require('./routes/playlist-route');
 const leaderboardRoutes = require('./routes/leaderboard-routes');
+const chatRoutes = require('./routes/chat-routes');
+
+const http = require('http').Server(app);
+const server = require('socket.io')(http);
 
 const DATABASE_HOST_NAME = 'localhost';
 const DATABASE_NAME = 'playlistDiscovery';
@@ -55,6 +60,7 @@ app.use('/auth', authRoutes);
 app.use('/profile', profileRoutes);
 app.use('/playlist', playlistRoutes);
 app.use('/leaderboard', leaderboardRoutes);
+app.use('/chat', chatRoutes);
 
 //create home route
 app.get('/', (req, res) => {
@@ -65,7 +71,67 @@ app.get('/', (req, res) => {
     }
 });
 
+var numUsers = 0;
+
+server.on('connection', (socket) => {
+    var addedUser = false;
+  
+    // when the client emits 'new message', this listens and executes
+    socket.on('new message', (data) => {
+      // we tell the client to execute 'new message'
+      socket.broadcast.emit('new message', {
+        username: socket.username,
+        message: data
+      });
+    });
+  
+    // when the client emits 'add user', this listens and executes
+    socket.on('add user', (username) => {
+      if (addedUser) return;
+  
+      // we store the username in the socket session for this client
+      socket.username = username;
+      ++numUsers;
+      addedUser = true;
+      socket.emit('login', {
+        numUsers: numUsers
+      });
+      // echo globally (all clients) that a person has connected
+      socket.broadcast.emit('user joined', {
+        username: socket.username,
+        numUsers: numUsers
+      });
+    });
+  
+    // when the client emits 'typing', we broadcast it to others
+    socket.on('typing', () => {
+      socket.broadcast.emit('typing', {
+        username: socket.username
+      });
+    });
+  
+    // when the client emits 'stop typing', we broadcast it to others
+    socket.on('stop typing', () => {
+      socket.broadcast.emit('stop typing', {
+        username: socket.username
+      });
+    });
+  
+    // when the user disconnects.. perform this
+    socket.on('disconnect', () => {
+      if (addedUser) {
+        --numUsers;
+  
+        // echo globally that this client has left
+        socket.broadcast.emit('user left', {
+          username: socket.username,
+          numUsers: numUsers
+        });
+      }
+    });
+  });
+
 // start server
-app.listen(3000, () => {
+http.listen(3000, () => {
     console.log('App now listening or requests on port 3000');
 });
