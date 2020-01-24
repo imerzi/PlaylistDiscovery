@@ -1,0 +1,72 @@
+.profile_page {
+    background: #3f3d58;
+    width: 100%;
+    height: 100vh;
+}
+
+.nav-transparent {
+    background: none;
+}
+
+.nav-colored {
+    background: #2c2b3e;
+}
+
+.logo {
+    width: 5%;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+h1 {
+    text-shadow: 0 3px 0px rgba(0, 0, 0, 0.2);
+}
+
+h3 {
+    text-shadow: 0 3px 0px rgba(0, 0, 0, 0.2);
+}
+  
+h5 {
+    text-shadow: 0 3px 0px rgba(0, 0, 0, 0.2);
+}
+  
+p {
+    font-size: 18px;
+    text-shadow: 0 2px 1px rgba(0, 0, 0, 0.5);
+}
+
+.btn {
+    box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.5);
+    color: #234957 !important;
+}
+
+.row_btn {
+    margin-top: 60px;
+}
+
+.made {
+    font-size: 10px;
+}
+
+.btn-logout {
+    width: 90px;
+    margin: auto;
+}
+
+.logo_thumbs {
+    margin-left: 8px;
+    color: #96b8d7;
+}
+
+.dropdown-menu {
+    width: 100%;
+    text-align: center !important;
+    background-color: #96b8d7 !important;
+}
+
+.dropdown-menu :hover {
+    background-color:#7aa5cc !important;
+    border-color:#719fc9 !important;
+}

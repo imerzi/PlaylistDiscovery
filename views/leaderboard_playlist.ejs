@@ -7,7 +7,7 @@
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/2356323c8f.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="/leaderboard_user.css"></link>
+  <link rel="stylesheet" href="/leaderboard_playlist.css"></link>
   <link rel="stylesheet" href="/theme.css"></link>
 </head>
 
@@ -18,22 +18,8 @@
         <div class="container">
 
             <div class="row">
-                <% if (users) { %>
-                <% users.forEach(function(item){ %>
-                <div class="col">
 
-                <div class="card text-white bg-primary" style="width: 20rem;">
-                    <img class="card-img-top" src="<%= item.thumbnail %>">
-                    <div class="card-body">
-                      <h5 class="card-title"><%= item.username %></h5>
-                      <p class="card-text">Reputation : <%= item.reputation %></p>
-                    </div>
-                  </div>
-
-                </div>
-                <% }) %>
-                <% } %>
-        </div>
+            </div>
 
             <!-- contenue -->
             

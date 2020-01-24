@@ -8,4 +8,8 @@ router.get('/user', (req, res) => {
     })
 });
 
+router.get('/playlist', (req, res) => {
+    res.render('leaderboard_playlist', {page_name: 'leaderboard', user: req.user});
+});
+
 module.exports = router;
