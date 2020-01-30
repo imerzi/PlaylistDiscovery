@@ -1,7 +1,7 @@
 .profile_page {
     background: #3f3d58;
     width: 100%;
-    height: 100vh;
+    height: 100%;
 }
 
 .nav-transparent {
@@ -69,4 +69,12 @@ p {
 .dropdown-menu :hover {
     background-color:#7aa5cc !important;
     border-color:#719fc9 !important;
+}
+
+.card-body {
+    padding: 10px!important;
+}
+
+.col {
+    margin-bottom: 2vh;
 }

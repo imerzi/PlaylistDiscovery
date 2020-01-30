@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const User = require('../models/user-model');
+const Playlist = require('../models/user-playlist');
 
 router.get('/user', (req, res) => {
 
@@ -9,7 +10,9 @@ router.get('/user', (req, res) => {
 });
 
 router.get('/playlist', (req, res) => {
-    res.render('leaderboard_playlist', {page_name: 'leaderboard', user: req.user});
+    Playlist.find({}).sort('-likes').exec(function(err, playlists) {
+        res.render('leaderboard_playlist', {page_name: 'leaderboard', user: req.user, playlists:playlists});
+    })
 });
 
 module.exports = router;
