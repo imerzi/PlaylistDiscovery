@@ -7,6 +7,13 @@ Share and discover new music.
   npm install
 
 ```
+
+# Run mongoDB ( need to be installed on your machine)
+```
+  mongod
+
+```
+
 # Run application
 ```
   nodemon

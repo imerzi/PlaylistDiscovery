@@ -21,6 +21,8 @@ const server = require('socket.io')(http);
 const DATABASE_HOST_NAME = 'localhost';
 const DATABASE_NAME = 'playlistDiscovery';
 
+const Playlist = require('./models/user-playlist');
+
 app.use(cors());
 app.use(cookieParser());
 
@@ -69,6 +71,16 @@ app.get('/', (req, res) => {
     } else {
         res.render('profile', {page_name: 'profile', user: req.user});
     }
+});
+
+app.post("/index/:id", function (req, res) {
+  Playlist.findOne({playlistId: req.params.id}).then((currentPlaylist) => {
+    if (currentPlaylist) {
+      currentPlaylist.likes += 1;
+      currentPlaylist.save();
+      res.send({likeCount: currentPlaylist.likes});
+    }
+  })
 });
 
 var numUsers = 0;
