@@ -14,6 +14,7 @@ const authRoutes = require('./routes/auth-routes');
 const playlistRoutes = require('./routes/playlist-route');
 const leaderboardRoutes = require('./routes/leaderboard-routes');
 const chatRoutes = require('./routes/chat-routes');
+const libraryRoutes = require('./routes/library-routes');
 
 const http = require('http').Server(app);
 const server = require('socket.io')(http);
@@ -63,6 +64,7 @@ app.use('/profile', profileRoutes);
 app.use('/playlist', playlistRoutes);
 app.use('/leaderboard', leaderboardRoutes);
 app.use('/chat', chatRoutes);
+app.use('/library', libraryRoutes);
 
 //create home route
 app.get('/', (req, res) => {

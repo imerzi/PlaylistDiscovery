@@ -66,6 +66,10 @@ router.get('/create', (req, res) => {
   });
 });
 
+router.get('/create/random', (req, res) => {
+  res.render('playlist_random', {page_name: 'playlist'});
+});
+
 router.post('/searchSong', async function(req, res) {
   spotifyApi.searchTracks(req.body.songs, {limit: 20, offset: 1}).then(
     function(data) {

@@ -1,76 +1,105 @@
 <nav id="nav" class="navbar sticky-top navbar-expand-lg navbar-dark nav-transparent">
-        <a class="navbar-brand" href="/">
-            <img src="/profile.png" height="50" height="50"></img>
-          </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
-          aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <ul class="navbar-nav mr-auto nav-fill w-100">
-                <% if (page_name == 'playlist' ) { %>
-                    <li class="nav-item dropdown">
-                            <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              playlist
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <a class="dropdown-item" href="/playlist">Discover</a>
-                              <a class="dropdown-item" href="/playlist/create">Create</a>
-                            </div>
-                        </li>
-                    <% } else { %>
-                        <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  playlist
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                  <a class="dropdown-item" href="/playlist">Discover</a>
-                                  <a class="dropdown-item" href="/playlist/create"">Create</a>
+  <a class="navbar-brand" href="/">
+    <img src="/profile.png" height="50" height="50"></img>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+    aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+    <ul class="navbar-nav mr-auto nav-fill w-100">
+      <% if (page_name == 'playlist' ) { %>
+      <li class="nav-item dropdown">
+        <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          playlist
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/playlist">discover</a>
+          <a class="dropdown-item" href="/playlist/create">create</a>
+          <a class="dropdown-item" href="/playlist/create/random">random</a>
+        </div>
+      </li>
+      <% } else { %>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          playlist
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/playlist">discover</a>
+          <a class="dropdown-item" href="/playlist/create"">create</a>
+          <a class="dropdown-item" href="/playlist/create/random">random</a>
                                 </div>
                             </li>
                             <% } %>
                     <% if (page_name == 'leaderboard' ) { %>
-                    <li class="nav-item dropdown">
-                      <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        leaderboard
-                      </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/leaderboard/user">User</a>
-                        <a class="dropdown-item" href="/leaderboard/playlist"">Playlist</a>
+                    <li class=" nav-item dropdown">
+            <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              leaderboard
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/leaderboard/user">user</a>
+              <a class="dropdown-item" href="/leaderboard/playlist"">playlist</a>
                       </div>
                   </li>
                     <% } else { %>
-                      <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          leaderboard
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="/leaderboard/user">User</a>
-                          <a class="dropdown-item" href="/leaderboard/playlist"">Playlist</a>
+                      <li class=" nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  leaderboard
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="/leaderboard/user">user</a>
+                  <a class="dropdown-item" href="/leaderboard/playlist"">playlist</a>
                         </div>
                     </li>
                             <% } %>
                     <% if (page_name == 'chat' ) { %>
-                    <li class="nav-item">
-                        <a href="/chat" class="nav-link active">chat</a>
-                    </li>
-                    <% } else {%>
-                    <li class="nav-item">
-                        <a href="/chat" class="nav-link">chat</a>
-                    </li>
-                    <% } %>
-                    <% if (page_name == 'profile' ) { %>
-                        <li class="nav-item">
-                            <a href="/profile" class="nav-link active">profile</a>
-                        </li>
-                        <% } else {%>
-                        <li class="nav-item">
-                            <a href="/profile" class="nav-link">profile</a>
-                        </li>
-                        <% } %>
-                        <li class="nav-item">
-                            <a href="/auth/logout"type="button" class="btn btn-primary nav-link btn-logout">logout</a>
-                        </li>
-                  </ul>
-        </div>
-      </nav>
+                    <li class=" nav-item">
+                    <a href="/chat" class="nav-link active">chat</a>
+      </li>
+      <% } else {%>
+      <li class="nav-item">
+        <a href="/chat" class="nav-link">chat</a>
+      </li>
+      <% } %>
+      <% if (page_name == 'library' ) { %>
+        <li class=" nav-item dropdown">
+<a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+  aria-haspopup="true" aria-expanded="false">
+  library
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+  <a class="dropdown-item" href="/library/tracks">top tracks</a>
+  <a class="dropdown-item" href="/library/artists"">top artists</a>
+          </div>
+      </li>
+        <% } else { %>
+          <li class=" nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false">
+      library
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <a class="dropdown-item" href="/library/tracks">top tracks</a>
+      <a class="dropdown-item" href="/library/artists"">top artists</a>
+            </div>
+        </li>
+                <% } %>
+      <% if (page_name == 'profile' ) { %>
+      <li class="nav-item">
+        <a href="/profile" class="nav-link active">profile</a>
+      </li>
+      <% } else {%>
+      <li class="nav-item">
+        <a href="/profile" class="nav-link">profile</a>
+      </li>
+      <% } %>
+      <li class="nav-item">
+        <a href="/auth/logout" type="button" class="btn btn-primary nav-link btn-logout">logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>

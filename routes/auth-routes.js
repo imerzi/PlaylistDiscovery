@@ -11,6 +11,7 @@ router.get('/logout', (req, res) => {
 // auth with spotify
 router.get('/spotify', passport.authenticate('spotify', {
     scope: [
+        'user-top-read',
         'user-read-email',
         'user-read-private',
         'playlist-read-collaborative',
