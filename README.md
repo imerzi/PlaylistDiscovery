@@ -4,6 +4,8 @@ Share and discover new music.
 
 # Install dependency
 ```
+  npm install -g nodemon (install nodemon globally)
+  sudo apt-get install -y mongodb-org
   npm install
 
 ```
