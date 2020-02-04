@@ -69,16 +69,17 @@ p {
 .dropdown-menu {
     width: 100%;
     text-align: center !important;
-    background-color: #96b8d7 !important;
+    /* background-color: #96b8d7 !important; */
 }
 
 .dropdown-menu :hover {
-    background-color:#7aa5cc !important;
-    border-color:#719fc9 !important;
+    /* background-color:#7aa5cc !important;
+    border-color:#719fc9 !important; */
 }
 
 .card-body {
     padding: 10px!important;
+    background-color: #ede3fb;
 }
 
 .col {
@@ -86,7 +87,7 @@ p {
 }
 
 .artistName {
-    color: white;
+    /* color: white; */
 }
 
 h4 {
@@ -95,4 +96,8 @@ h4 {
 
 .header {
     border-radius: 25px;
+}
+
+.card-title {
+    text-align: center!important;
 }

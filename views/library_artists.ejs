@@ -24,9 +24,19 @@
             <div class="row">
 
                 <% artists.forEach(function(artist) { %>
-                <div class="col-lg-2">
+                <!-- <div class="col-lg-2">
                     <img class="rounded-circle" width="140" height="140" src=<%= artist.image %>></img>
                     <h4 class="artistName"><%= artist.name %></h4>
+                </div> -->
+
+                <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="<%= artist.image %>" alt="Card image cap">
+                    <div class="card-body">
+                      <h5 class="card-title artistName"><%= artist.name %></h5>
+                      <!-- <p class="card-text artistName"><%= artist.name %></p> -->
+                    </div>
+                  </div>
                 </div>
                 <% }); %>
 

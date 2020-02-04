@@ -1,7 +1,7 @@
 .profile_page {
     background: linear-gradient(to right, #516395, #614385);
     width: 100%;
-    height: 100vh;
+    height: 100%;
 }
 
 .nav-transparent {
@@ -25,7 +25,13 @@ nav {
 }
 
 h1 {
-    text-shadow: 0 3px 0px rgba(0, 0, 0, 0.2);
+    /* text-shadow: 0 3px 0px rgba(0, 0, 0, 0.2); */
+    color: white;
+}
+
+h2 {
+    color: white;
+    text-align: center;
 }
 
 h3 {
@@ -71,14 +77,32 @@ p {
 .dropdown-menu {
     width: 100%;
     text-align: center !important;
-    background-color: #96b8d7 !important;
+    /* background-color: #96b8d7 !important; */
 }
 
 .dropdown-menu :hover {
-    background-color:#7aa5cc !important;
-    border-color:#719fc9 !important;
+    /* background-color:#7aa5cc !important;
+    border-color:#719fc9 !important; */
 }
 
 .header {
      border-radius: 25px;
+}
+
+hr {
+    background-color:#ede3fb;
+    margin-top: 3vh!important;
+}
+
+.hrBottom {
+    margin-bottom: 3vh!important;
+}
+
+.card-body {
+    padding: 10px!important;
+    background-color: #ede3fb;
+}
+
+.col {
+    margin-bottom: 2vh;
 }

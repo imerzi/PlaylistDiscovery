@@ -27,29 +27,29 @@ nav {
 .dropdown-menu {
   width: 100%;
   text-align: center !important;
-  background-color: #96b8d7 !important;
+  /* background-color: #96b8d7 !important; */
 }
 
 .dropdown-menu :hover {
-  background-color:#7aa5cc !important;
-  border-color:#719fc9 !important;
+  /* background-color:#7aa5cc !important;
+  border-color:#719fc9 !important; */
 }
 
 h1 {
-    text-shadow: 0 3px 0px rgba(0, 0, 0, 0.2);
+    /* text-shadow: 0 3px 0px rgba(0, 0, 0, 0.2); */
 }
 
 h3 {
-    text-shadow: 0 3px 0px rgba(0, 0, 0, 0.2);
+    /* text-shadow: 0 3px 0px rgba(0, 0, 0, 0.2); */
 }
   
 h5 {
-    text-shadow: 0 3px 0px rgba(0, 0, 0, 0.2);
+    /* text-shadow: 0 3px 0px rgba(0, 0, 0, 0.2); */
 }
   
 p {
     font-size: 18px;
-    text-shadow: 0 2px 1px rgba(0, 0, 0, 0.5);
+    /* text-shadow: 0 2px 1px rgba(0, 0, 0, 0.5); */
 }
 
 .btn {
@@ -104,16 +104,18 @@ html, input {
   }
   
   .page {
-    height: 50vh;
+    height: 75vh;
     position: absolute;
     width: 120vh;
     background-color: whitesmoke;
+    border-radius: 40px;
   }
   
   /* Login Page */
   
   .login.page {
-    background-color: #96b8d7;
+    background-color: #ede3fb;
+    border-radius: 40px;
   }
   
   .login.page .form {
@@ -129,7 +131,7 @@ html, input {
   .login.page .form .usernameInput {
     background-color: transparent;
     border: none;
-    border-bottom: 2px solid #fff;
+    border-bottom: 2px dashed #234957;
     outline: none;
     padding-bottom: 15px;
     text-align: center;
@@ -146,7 +148,8 @@ html, input {
   }
   
   .login.page .title, .login.page .usernameInput {
-    color: #fff;
+    /* color: #fff; */
+    color: #234957;
     font-weight: 100;
   }
   
@@ -165,6 +168,7 @@ html, input {
   
   .inputMessage {
     font-size: 100%;
+    border-radius: 15px;
   }
   
   .log {
@@ -214,7 +218,7 @@ html, input {
   }
 
   .row {
-    margin-top: 10vh;
+    margin-top: 7vh;
   }
 
   .header {

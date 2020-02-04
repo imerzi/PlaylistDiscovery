@@ -34,35 +34,28 @@
                   </div>
                 </div>
             </div>
-            
-            <div class="footer fixed-bottom">
-              <div class="container">
-              <div class="row sixth_row">
-                <div class="col-md-2">
-                  <h5 class="text-white text-center"><a>Home</a></h5>
-                </div>
-                <div class="col-md-3">
-                  <h5 class="text-white  text-center"><a>Playlists</a></h5>
-                </div>
-                <div class="col-md-2">
-                  <h5 class="text-white text-center"><a>Top playlists</a></h5>
-                </div>
-                <div class="col-md-3">
-                  <h5 class="text-white text-center"><a>Top users</a></h5>
-                </div>
-                <div class="col-md-2">
-                  <h5 class="text-white text-center"><a>Chat</a></h5>
-                </div>
-              </div>
-      
-              <div class="row">
-                <div class="col-md-12">
-                  <p class="made text-white text-center">Made by <a><strong>imerzi</strong></a></p>
-                </div>
-              </div>
-            </div>
-            </div>
 
+            <hr/>
+            <h2>Your playlists</h2>
+            <hr class="hrBottom"/>
+
+            <div class="row">
+              <% if (playlists) { %>
+              <% playlists.forEach(function(item){ %>
+              <div class="col">
+
+                  <div class="card text-white bg-primary" style="width: 20rem;">
+                      <div class="card-body">
+                          <p class="card-text">
+                              <iframe src="https://open.spotify.com/embed/playlist/<%= item.playlistId %>" width="300"
+                                  height="380" frameborder="0" allowtransparency="true"
+                                  allow="encrypted-media"></iframe>
+                      </div>
+                  </div>
+              </div>
+              <% }) %>
+              <% } %>
+          </div>
         </div>
     </div>
 

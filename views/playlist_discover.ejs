@@ -32,7 +32,8 @@
                                     height="380" frameborder="0" allowtransparency="true"
                                     allow="encrypted-media"></iframe>
                                 <a class="likeicon" onclick='updateLikes("<%= item.playlistId%>")'>
-                                    <i id="<%= item.playlistId %>" class="logo_thumbs fas fa-thumbs-up" aria-hidden="true"> <%= item.likes %></i>
+                                    <i id="<%= item.playlistId %>" class="logo_thumbs far fa-heart" aria-hidden="true"><%= item.likes %></i>
+                                    <!-- <img id="<%= item.playlistId %>" class="logo_thumbs" src="like.svg" width="50" height="50"><%= item.likes %></img> -->
                                 </a>
                         </div>
                     </div>

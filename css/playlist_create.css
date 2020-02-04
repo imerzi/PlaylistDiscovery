@@ -71,12 +71,12 @@ p {
 .dropdown-menu {
     width: 100%;
     text-align: center !important;
-    background-color: #96b8d7 !important;
+    /* background-color: #96b8d7 !important; */
 }
 
 .dropdown-menu :hover {
-    background-color:#7aa5cc !important;
-    border-color:#719fc9 !important;
+    /* background-color:#7aa5cc !important;
+    border-color:#719fc9 !important; */
 }
 
 .song {

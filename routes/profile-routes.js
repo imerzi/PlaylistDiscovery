@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const Playlist = require('../models/user-playlist');
 
 const authCheck = (req, res, next) => {
     if(!req.user) {
@@ -11,7 +12,14 @@ const authCheck = (req, res, next) => {
 };
 
 router.get('/', authCheck, (req, res) => {
-    res.render('profile', {page_name: 'profile', user: req.user});
+    Playlist.find({user: req.user.id}).then((userPlaylists) => {
+        if (userPlaylists) {
+            res.render('profile', {page_name: 'profile', user: req.user, playlists:userPlaylists});
+        }
+        else {
+            res.render('profile', {page_name: 'profile', user: req.user, playlists: ''});
+        }
+      })
 });
 
 module.exports = router;
