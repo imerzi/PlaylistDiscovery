@@ -1,5 +1,5 @@
 .profile_page {
-    background: #3f3d58;
+    background: linear-gradient(to right, #516395, #614385);
     width: 100%;
     height: 100vh;
 }
@@ -12,12 +12,16 @@
     background: #2c2b3e;
 }
 
+nav {
+    margin-bottom: 4vh;
+}
+
 .logo {
     width: 5%;
 }
 
 .container {
-    margin-top: 50px;
+    margin-top: 5px;
 }
 
 h1 {
@@ -40,6 +44,8 @@ p {
 .btn {
     box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.5);
     color: #234957 !important;
+    background-color: #ede3fb!important;
+    border-color: #ede3fb!important;
 }
 
 .row_btn {
@@ -53,6 +59,8 @@ p {
 .btn-logout {
     width: 90px;
     margin: auto;
+    background-color: #ede3fb !important;
+    border-color: #ede3fb !important;
 }
 
 .logo_thumbs {
@@ -69,4 +77,8 @@ p {
 .dropdown-menu :hover {
     background-color:#7aa5cc !important;
     border-color:#719fc9 !important;
+}
+
+.header {
+     border-radius: 25px;
 }

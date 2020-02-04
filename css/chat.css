@@ -1,5 +1,5 @@
 .profile_page {
-    background: #3f3d58;
+  background: linear-gradient(to right, #516395, #614385);
     width: 100%;
     height: 100vh;
 }
@@ -12,12 +12,16 @@
     background: #2c2b3e;
 }
 
+nav {
+  margin-bottom: 4vh;
+}
+
 .logo {
     width: 5%;
 }
 
 .container {
-    margin-top: 50px;
+    margin-top: 5px;
 }
 
 .dropdown-menu {
@@ -64,6 +68,8 @@ p {
 .btn-logout {
     width: 90px;
     margin: auto;
+    background-color: #ede3fb !important;
+    border-color: #ede3fb!important;
 }
 
 html, input {
@@ -210,3 +216,7 @@ html, input {
   .row {
     margin-top: 10vh;
   }
+
+  .header {
+    border-radius: 25px;
+}

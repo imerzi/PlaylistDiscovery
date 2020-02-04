@@ -25,7 +25,6 @@ router.get('/artists', (req, res) => {
             }
             artists.push(elem);
         });
-        console.log(artists);
         res.render('library_artists', { page_name: 'library', artists:artists});        
       }, function(err) {
           console.log("error", err);
