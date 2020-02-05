@@ -21,7 +21,7 @@ nav {
 }
 
 .container {
-    margin-top: 5px;
+    /* margin-top: 5px; */
 }
 
 h1 {
@@ -113,7 +113,7 @@ p {
     color: #234957 !important;
     background-color: #ede3fb!important;
     border-color: #ede3fb!important;
-    width: 33vh!important;
+    max-width: 33vh!important;
 }
 
 .row-btn {
