@@ -20,36 +20,13 @@ nav {
     width: 5%;
 }
 
-.container {
-    /* margin-top: 5px; */
-}
-
 .dropdown-menu {
   width: 100%;
   text-align: center !important;
-  /* background-color: #96b8d7 !important; */
-}
-
-.dropdown-menu :hover {
-  /* background-color:#7aa5cc !important;
-  border-color:#719fc9 !important; */
-}
-
-h1 {
-    /* text-shadow: 0 3px 0px rgba(0, 0, 0, 0.2); */
-}
-
-h3 {
-    /* text-shadow: 0 3px 0px rgba(0, 0, 0, 0.2); */
-}
-  
-h5 {
-    /* text-shadow: 0 3px 0px rgba(0, 0, 0, 0.2); */
 }
   
 p {
     font-size: 18px;
-    /* text-shadow: 0 2px 1px rgba(0, 0, 0, 0.5); */
 }
 
 .btn {
