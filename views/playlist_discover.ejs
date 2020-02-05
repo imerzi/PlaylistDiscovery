@@ -20,7 +20,14 @@
         <%- include('header'); -%>
         <div class="container">
 
+            <div class="row row-btn">
+            <div class="col-md-4">
+                <a href="/playlist/create" type="button" class="btn-create btn btn-primary btn-lg btn-block font-weight-bold">CREATE PLAYLISTS</a>
+            </div>
+        </div>
+
             <div class="row">
+
                 <% if (lists) { %>
                 <% lists.forEach(function(item){ %>
                 <div class="col">
@@ -32,7 +39,8 @@
                                     height="380" frameborder="0" allowtransparency="true"
                                     allow="encrypted-media"></iframe>
                                 <a class="likeicon" onclick='updateLikes("<%= item.playlistId%>")'>
-                                    <i id="<%= item.playlistId %>" class="logo_thumbs far fa-heart" aria-hidden="true"><%= item.likes %></i>
+                                    <i id="<%= item.playlistId %>" class="logo_thumbs far fa-heart"
+                                        aria-hidden="true"><%= item.likes %></i>
                                     <!-- <img id="<%= item.playlistId %>" class="logo_thumbs" src="like.svg" width="50" height="50"><%= item.likes %></img> -->
                                 </a>
                         </div>

@@ -18,7 +18,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <img src="<%= user.thumbnail %>"></img>
+                  <div class="card text-white bg-primary">
+                    <div class="card-body">
+                    <img class="card-img-top" src="<%= user.thumbnail %>" alt="user">
+                  </div>
+                    <!-- <div class="card-title">Welcome <%= user.username %></div> -->
+                  </div>
+                    <!-- <img src="<%= user.thumbnail %>"></img> -->
                 </div>
                 <div class="col-md-8">
                     <h3 class="text-white">Welcome <%= user.username %></h3>

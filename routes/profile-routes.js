@@ -17,7 +17,7 @@ router.get('/', authCheck, (req, res) => {
             res.render('profile', {page_name: 'profile', user: req.user, playlists:userPlaylists});
         }
         else {
-            res.render('profile', {page_name: 'profile', user: req.user, playlists: ''});
+            res.render('profile', {page_name: 'profile', user: req.user, playlists: userPlaylists});
         }
       })
 });

@@ -107,3 +107,17 @@ p {
   .header {
     border-radius: 25px;
 }
+
+.btn-create {
+    box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.5);
+    color: #234957 !important;
+    background-color: #ede3fb!important;
+    border-color: #ede3fb!important;
+    width: 33vh!important;
+}
+
+.row-btn {
+    margin: auto;
+    justify-content: center!important;
+    margin-bottom: 5vh;
+}
