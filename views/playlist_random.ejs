@@ -21,7 +21,41 @@
         <%- include('header'); -%>
         <div class="container">
 
+            <% if (alert == 'true') { %>
+                <div class="row">
+              <div class="col-md-12 alert alert-success" role="alert">
+                Playlist successfully created 5 reputations earn.
+              </div>
+            </div>
+              <% } %>
+
             <div class="row">
+                    <h2>Add up to 5 Artsits</h2>
+                    
+                    <form class="form-inline" method="POST" action="/add">
+                        <div class="form-group mx-sm-1 mb-2">
+                          <input name="artistName" type="text" placeholder="Artist name">
+                        </div>
+                        <button type="submit" class="btn btn-info mb-2">Add <i class="fas fa-arrow-down"></i></button>
+                    </form>
+                    <!-- <h2>Your picks:</h2> -->
+                    <div class="row">
+                        <% if (artistInfo) { %>
+                        <% artistInfo.forEach(function(artist) { %>
+                          <div class="col-lg-2">
+                            <img class="rounded-circle" width="140" height="140" src=<%= artist.img %>></img>
+                            <h4><%= artist.name %></h4>
+                          </div>
+                        <% }); %>
+                        <% } %>
+                    </div>
+              
+                    <form class="form-inline" action="getRecommendations" method="post">
+                      <div class="form-group mx-sm-1 mb-2">
+                        <input class="form-control" name="playlistLength" type="text" placeholder="Number of songs" required>
+                      </div>
+                      <button type="submit" class="btn btn-info mb-2">Get Recommendations</button>
+                    </form>
 
             </div>
 

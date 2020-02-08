@@ -66,10 +66,6 @@ router.get('/create', (req, res) => {
   });
 });
 
-router.get('/create/random', (req, res) => {
-  res.render('playlist_random', {page_name: 'playlist'});
-});
-
 router.post('/searchSong', async function(req, res) {
   spotifyApi.searchTracks(req.body.songs, {limit: 20, offset: 1}).then(
     function(data) {
@@ -145,5 +141,15 @@ async function addToPlaylist(userId, playlistId, trackURIs, access_token) {
       }
   });
 }
+
+router.get('/create/random', (req, res) => {
+  res.clearCookie("URIs");
+  res.clearCookie("artistInfo");
+  res.render('playlist_random', {page_name: 'playlist', artistInfo: '', alert:'false'});
+});
+
+// router.get('/random', (req, res) => {
+//   res.render('playlist_recommendation', {page_name: 'playlist', artistInfo: ''});
+// });
 
 module.exports = router;

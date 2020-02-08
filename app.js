@@ -8,6 +8,7 @@ const cookieSession = require('cookie-session');
 const app = express();
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser');
+const axios = require('axios');
 
 const profileRoutes = require('./routes/profile-routes');
 const authRoutes = require('./routes/auth-routes');
@@ -23,6 +24,7 @@ const DATABASE_HOST_NAME = 'localhost';
 const DATABASE_NAME = 'playlistDiscovery';
 
 const Playlist = require('./models/user-playlist');
+const User = require('./models/user-model');
 
 app.use(cors());
 app.use(cookieParser());
@@ -84,6 +86,143 @@ app.post("/index/:id", function (req, res) {
     }
   })
 });
+
+app.post('/add', async function(req, res) {
+  let access_token = req.user.userAccessToken;
+  let artistName = req.body.artistName;
+  let artistInfo = [];
+
+  if(req.cookies.artistInfo){
+    artistInfo = req.cookies.artistInfo;
+  }
+
+  await search(artistName, access_token).then(function(result) {
+    let artist = result.data.artists.items[0];
+    let obj = {
+      img: artist.images[0].url,
+      name: artist.name,
+      artistId: artist.id
+    }
+    artistInfo.push(obj);
+    res.cookie('artistInfo', artistInfo);
+    res.render('playlist_random', {page_name: 'playlist', artistInfo: artistInfo, alert:'false'});
+  })
+});
+
+async function search(artistName, access_token) {
+  return await axios({
+      url: `https://api.spotify.com/v1/search?q=${artistName}&type=artist&limit=1`,
+      method: 'get',
+      headers: {
+        'Authorization': 'Bearer ' + access_token
+      }
+  });
+}
+
+app.post('/getRecommendations', async function (req, res) {
+  let playlistLength = req.body.playlistLength
+  let artistQuery = ""
+
+  let access_token = req.user.userAccessToken;
+  let artistInfo = req.cookies.artistInfo
+
+  for(i=0; i < artistInfo.length; i++){
+    artistQuery += artistInfo[i].artistId + ","
+  }
+
+  artistQuery = artistQuery.slice(0, -1);
+
+  await getRecommendations(artistQuery, playlistLength, access_token).then(function(result) {
+    let tracks = []
+    let trackURIs = []
+
+    for(i = 0; i < result.data.tracks.length; i++){
+      let track = result.data.tracks[i]
+      let obj = {
+        number: i+1,
+        name: track.name,
+        artist: track.artists[0].name,
+        duration: toMins(track.duration_ms)
+      }
+      tracks.push(obj)
+      trackURIs.push(track.uri)
+      res.cookie('URIs', trackURIs)
+    }
+    res.render('playlist_recommendation', { page_name:'playlist', tracks: tracks });
+  })
+
+})
+
+async function getRecommendations(artistQuery, playlistLength, access_token) {
+  return await axios({
+      url: `https://api.spotify.com/v1/recommendations?seed_artists=${artistQuery}&limit=${playlistLength}`,
+      method: 'get',
+      headers: {
+        'Authorization': 'Bearer ' + access_token
+      }
+  });
+}
+
+function toMins(millis) {
+  var minutes = Math.floor(millis / 60000);
+  var seconds = ((millis % 60000) / 1000).toFixed(0);
+  return (seconds == 60 ? (minutes+1) + ":00" : minutes + ":" + (seconds < 10 ? "0" : "") + seconds);
+}
+
+app.post('/makePlaylist', async function (req, res) {
+  let playlistName = req.body.playlistName
+  let userId = req.user.spotifyId;
+  let playlistId = ""
+  let access_token = req.user.userAccessToken;
+  let trackURIs = req.cookies.URIs
+
+  await makePlaylist(userId, playlistName, access_token).then(function(result) {
+    playlistId = result.data.id
+  })
+
+  await addToPlaylist(userId, playlistId, trackURIs, access_token).then(function(result) {
+    res.clearCookie("URIs");
+    res.clearCookie("artistInfo");
+    res.render('playlist_random', {page_name: 'playlist', artistInfo: '', alert:'true'});
+  })
+
+  User.findOneAndUpdate({ spotifyId: req.user.spotifyId }, { $inc: { reputation: 5 } }, {new: true },function(err, response) {
+    if (err) {
+      console.log('error update user')
+    } else {
+    console.log('success update user')
+  }
+})
+
+})
+
+async function makePlaylist(userId, playlistName, access_token) {
+  return await axios({
+      url: `https://api.spotify.com/v1/users/${userId}/playlists`,
+      method: 'post',
+      headers: {
+        'Authorization': 'Bearer ' + access_token,
+        'Content-Type': 'application/json'
+      },
+      data: {
+        'name': playlistName
+      }
+  });
+}
+
+async function addToPlaylist(userId, playlistId, trackURIs, access_token) {
+  return await axios({
+      url: `https://api.spotify.com/v1/users/${userId}/playlists/${playlistId}/tracks`,
+      method: 'post',
+      headers: {
+        'Authorization': 'Bearer ' + access_token,
+        'Content-Type': 'application/json'
+      },
+      data: {
+        uris: trackURIs
+      }
+  });
+}
 
 var numUsers = 0;
 

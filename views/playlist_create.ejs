@@ -22,19 +22,24 @@
     <div class="container">
 
       <% if (alert == 'true') { %>
-      <div class="alert alert-success" role="alert">
-        Playlist create with success 5 reputation earn !
+        <div class="row">
+      <div class="col-md-12 alert alert-success" role="alert">
+        Playlist successfully created 5 reputations earn.
       </div>
+    </div>
       <% } %>
 
       <div class="row">
 
-        <div class="col-md-7">
+        <div class="col-md-6">
+          
+          <h2 class="title1">First search for songs</h2>
+
           <form class="form-inline" method="POST" action="searchSong">
-            <div class="form-group">
+            <div class="form-group mx-sm-3 mb-2">
               <input name="songs" id="songs" type="text" class="form-control" placeholder="Search for tracks">
             </div>
-            <button type="submit" class="btn btn-primary">Search</button>
+            <button type="submit" class="btn btn-primary mb-2">Search</button>
           </form>
 
           <div class="row songTable">
@@ -70,15 +75,20 @@
 
         </div>
 
-        <div class="col-md-4 right">
+        <div class="col-md-5 right">
+
+          <h2 class="title1">Then create your playlist</h2>
+
           <form class="form-inline" method="POST" action="addPlaylist">
-            <div class="form-group">
+            <div class="form-group mx-sm-3 mb-2">
               <input name="playlistName" id="playlistName" type="text" class="form-control" placeholder="Playlist name">
             </div>
-            <button type="submit" class="btn btn-primary">Create playlist</button>
+            <button type="submit" class="btn btn-primary mb-2">Create</button>
             <ul id="list" class="list-group">
+
             </ul>
           </form>
+
         </div>
 
       </div>
@@ -115,7 +125,7 @@
       var artistName = document.getElementById(elem).previousElementSibling;
 
       var entry = document.createElement('li');
-      entry.style.backgroundColor = "#2E2C47"
+      entry.style.backgroundColor = "#434160"
       entry.style.color = "white";
       entry.setAttribute("class", "list-group-item");
       var hiddenInput = document.createElement('input');

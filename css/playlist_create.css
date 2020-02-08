@@ -82,17 +82,50 @@ p {
 }
 
 .songTable {
-    margin-top: 5vh;
+    padding: 20px;
 }
 
 .table-dark {
-    background-color: #2E2C47!important;
+    background-color: #434160!important;
 }
 
 .list-group {
-    margin-top: 5vh;
+    margin-top: 2vh;
+    /* margin: auto!important; */
+}
+
+.list-group-item {
+    border: none!important;
+    /* text-align: center; */
 }
 
 .header {
     border-radius: 25px;
+}
+
+.title1 {
+    color:white;
+    padding-left: 16px;
+    padding-bottom: 1vh;
+}
+
+.col-md-6 {
+    background-color: #434160 !important;
+    padding: 10px;
+    border-radius: 20px;
+    margin-bottom: 4vh;
+}
+
+.col-md-5 {
+    background-color: #434160 !important;
+    padding: 10px;
+    border-radius: 20px;
+    margin-bottom: 4vh;
+    height: 100%!important;
+}
+
+.alert-success {
+    color:white!important;
+    background-color:#434160!important;
+    border-color:#434160!important;
 }

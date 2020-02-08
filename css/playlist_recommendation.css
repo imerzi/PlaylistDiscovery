@@ -21,15 +21,15 @@ nav {
 }
 
 h1 {
-    text-shadow: 0 3px 0px rgba(0, 0, 0, 0.2);
+    /* text-shadow: 0 3px 0px rgba(0, 0, 0, 0.2); */
 }
 
 h3 {
-    text-shadow: 0 3px 0px rgba(0, 0, 0, 0.2);
+    /* text-shadow: 0 3px 0px rgba(0, 0, 0, 0.2); */
 }
   
 h5 {
-    text-shadow: 0 3px 0px rgba(0, 0, 0, 0.2);
+    /* text-shadow: 0 3px 0px rgba(0, 0, 0, 0.2); */
 }
   
 p {
@@ -77,10 +77,4 @@ p {
 
 .header {
     border-radius: 25px;
-}
-
-.alert-success {
-    color:white!important;
-    background-color:#434160!important;
-    border-color:#434160!important;
 }

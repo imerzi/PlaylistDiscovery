@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>playlistDiscovery</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/2356323c8f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/playlist_recommendation.css">
+    </link>
+    <link rel="stylesheet" href="/theme.css">
+    </link>
+</head>
+
+<body>
+
+    <div class="profile_page">
+        <%- include('header'); -%>
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-md-8">
+                    <h2>Your playlist</h2>
+                    <div class="table-wrapper-scroll-y">
+                        <table class='table borderless'>
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Artist</th>
+                                    <th scope="col"><i class="far fa-clock"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% if (tracks) { %>
+                                <% tracks.forEach(function(track) { %>
+                                <tr>
+                                    <th scope="row"><%= track.number %></th>
+                                    <td><%= track.name %></td>
+                                    <td><%= track.artist %></td>
+                                    <td><%= track.duration %></td>
+                                </tr>
+                                <% }); %>
+                                <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h3>Like it? add it to your spotify.</h3>
+                    <form action="/makePlaylist" method="post">
+                        <input class="form-control mb-2" name="playlistName" type="text" placeholder="Playlist Name"
+                            required>
+                        <button type="submit" class="btn btn-info">Add to Spotify</i></button>
+                    </form>
+                    <h3>Or...</h3>
+                    <form action="/home" method="get">
+                        <button type="submit" class="btn btn-info">Try Again</button>
+                    </form>
+                    <div>
+                        <p class="mt-5 mb-3">
+                            <a href="https://www.linkedin.com/in/mccannsean11/"><i
+                                    class="fab fa-linkedin fa-2x"></i></a>
+                            <a href="https://github.com/SeanEmac"><i class="fab fa-github fa-2x"></i></a>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script>
+        window.addEventListener('scroll', function (e) {
+            var nav = document.getElementById('nav');
+            if (document.documentElement.scrollTop || document.body.scrollTop > window.innerHeight) {
+                nav.classList.remove('nav-transparent');
+                nav.classList.add('nav-colored');
+            } else {
+                nav.classList.remove('nav-colored');
+                nav.classList.add('nav-transparent');
+            }
+        });
+    </script>
+</body>
+
+</html>
