@@ -24,6 +24,10 @@ h1 {
     text-shadow: 0 3px 0px rgba(0, 0, 0, 0.2);
 }
 
+h2, h4 {
+    color: white;
+}
+
 h3 {
     text-shadow: 0 3px 0px rgba(0, 0, 0, 0.2);
 }
@@ -40,6 +44,8 @@ p {
 .btn {
     box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.5);
     color: #234957 !important;
+    background-color: #ede3fb!important;
+    border-color: #ede3fb!important;
 }
 
 .row_btn {
@@ -83,4 +89,33 @@ p {
     color:white!important;
     background-color:#434160!important;
     border-color:#434160!important;
+}
+
+.title1 {
+    color:white;
+    padding-left: 16px;
+    padding-bottom: 1vh;
+}
+
+.col-md-6 {
+    background-color: #434160 !important;
+    padding: 10px;
+    border-radius: 20px;
+    margin-bottom: 4vh;
+}
+
+.col-md-5 {
+    background-color: #434160 !important;
+    padding: 10px;
+    border-radius: 20px;
+    margin-bottom: 4vh;
+    height: 100%!important;
+}
+
+.right {
+    margin-left: 5vh;
+}
+
+.songTable {
+    padding: 20px;
 }

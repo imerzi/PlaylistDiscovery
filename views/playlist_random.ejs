@@ -30,15 +30,51 @@
               <% } %>
 
             <div class="row">
-                    <h2>Add up to 5 Artsits</h2>
+
+              <div class="col-md-6">
+
+                <h2 class="title1">Add up to 5 Artists</h2>
+                <form class="form-inline" method="POST" action="/add">
+                  <div class="form-group mx-sm-1 mb-2">
+                    <input name="artistName" type="text" placeholder="Artist name">
+                  </div>
+                  <button type="submit" class="btn btn-primary mb-2">Add <i class="fas fa-arrow-down"></i></button>
+              </form>
+
+              <div class="row songTable">
+                <% if (artistInfo) { %>
+                  <% artistInfo.forEach(function(artist) { %>
+                    <div class="col-lg-4">
+                      <img class="rounded-circle" width="140" height="140" src=<%= artist.img %>></img>
+                      <h4><%= artist.name %></h4>
+                    </div>
+                  <% }); %>
+                  <% } %>
+              </div>
+
+              </div>
+
+              <div class="col-md-5 right">
+
+                <h2 class="title1">Choose the number of songs</h2>
+
+                <form class="form-inline" action="getRecommendations" method="post">
+                  <div class="form-group mx-sm-1 mb-2">
+                    <input class="form-control" name="playlistLength" type="text" placeholder="Number of songs" required>
+                  </div>
+                  <button type="submit" class="btn btn-primary mb-2">Get Recommendations</button>
+                </form>
+
+              </div>
+
+                    <!-- <h2>Add up to 5 Artsits</h2> -->
                     
-                    <form class="form-inline" method="POST" action="/add">
+                    <!-- <form class="form-inline" method="POST" action="/add">
                         <div class="form-group mx-sm-1 mb-2">
                           <input name="artistName" type="text" placeholder="Artist name">
                         </div>
                         <button type="submit" class="btn btn-info mb-2">Add <i class="fas fa-arrow-down"></i></button>
                     </form>
-                    <!-- <h2>Your picks:</h2> -->
                     <div class="row">
                         <% if (artistInfo) { %>
                         <% artistInfo.forEach(function(artist) { %>
@@ -55,7 +91,7 @@
                         <input class="form-control" name="playlistLength" type="text" placeholder="Number of songs" required>
                       </div>
                       <button type="submit" class="btn btn-info mb-2">Get Recommendations</button>
-                    </form>
+                    </form> -->
 
             </div>
 

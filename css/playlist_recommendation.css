@@ -20,16 +20,12 @@ nav {
     width: 5%;
 }
 
-h1 {
-    /* text-shadow: 0 3px 0px rgba(0, 0, 0, 0.2); */
+h2, h3 {
+    color: white;
 }
 
-h3 {
-    /* text-shadow: 0 3px 0px rgba(0, 0, 0, 0.2); */
-}
-  
-h5 {
-    /* text-shadow: 0 3px 0px rgba(0, 0, 0, 0.2); */
+th, td {
+    color: white;
 }
   
 p {
@@ -40,6 +36,8 @@ p {
 .btn {
     box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.5);
     color: #234957 !important;
+    background-color: #ede3fb!important;
+    border-color: #ede3fb!important;
 }
 
 .row_btn {
